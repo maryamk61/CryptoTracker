@@ -39,28 +39,19 @@ struct DetailView: View {
                     .frame(height: 150)
                 overviewTitle
                 Divider()
-                LazyVGrid(columns: columns,
-                          alignment: .leading,
-                          spacing: 30,
-                          pinnedViews: []) {
-                    ForEach(vm.overviewStatistics) { stat in
-                        StatisticView(stat: stat)
-                    }
-                }
+                overviewGrid
                 additionalTitle
                 Divider()
-                LazyVGrid(columns: columns,
-                          alignment: .leading,
-                          spacing: 30,
-                          pinnedViews: []) {
-                    ForEach(vm.additionalStatistics) {stat in
-                        StatisticView(stat: stat)
-                    }
-                }
+                additionalGrid
             }
             .padding()
         }
         .navigationTitle(vm.coin.name)
+        .toolbar {
+            ToolbarItem(placement:.navigationBarTrailing, content: {
+                navigationbarTrailingItems
+            })
+        }
     }
 }
 
@@ -75,6 +66,16 @@ struct DetailView_Previews: PreviewProvider {
 
 
 extension DetailView {
+    private var navigationbarTrailingItems: some View {
+        HStack {
+            Text(vm.coin.symbol.uppercased())
+                .font(.headline)
+            .foregroundColor(Color.theme.secondaryText)
+            CoinImageView(coin: vm.coin)
+                .frame(width: 24, height: 25)
+        }
+    }
+    
     private var overviewTitle: some View {
         Text("Overview")
             .font(.title).bold()
@@ -87,5 +88,27 @@ extension DetailView {
             .font(.title).bold()
             .foregroundColor(Color.theme.accent)
             .frame(maxWidth: .infinity,alignment: .leading)
+    }
+    
+    private var overviewGrid: some View {
+        LazyVGrid(columns: columns,
+                  alignment: .leading,
+                  spacing: 30,
+                  pinnedViews: []) {
+            ForEach(vm.overviewStatistics) { stat in
+                StatisticView(stat: stat)
+            }
+        }
+    }
+    
+    private var additionalGrid: some View {
+        LazyVGrid(columns: columns,
+                  alignment: .leading,
+                  spacing: 30,
+                  pinnedViews: []) {
+            ForEach(vm.additionalStatistics) {stat in
+                StatisticView(stat: stat)
+            }
+        }
     }
 }
