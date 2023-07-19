@@ -12,7 +12,7 @@ struct HomeView: View {
     
     @State private var showPortfolio: Bool = false // animate right
     @State private var showPortfolioView: Bool = false // new sheet
-    
+    @State private var showSettingsView: Bool = false//new sheet
     @State private var selectedCoin: CoinModel?
     @State private var showDetailView: Bool = false
     
@@ -25,6 +25,9 @@ struct HomeView: View {
                 .sheet(isPresented: $showPortfolioView) {
                     PortFolioView(isPresented: $showPortfolioView)
                         .environmentObject(viewModel) // it's a new environment (new sheet) so to send the homeViewModel to the sheet because we use it there
+                }
+                .sheet(isPresented: $showSettingsView) {
+                    SettingsView(isPresented: $showSettingsView)
                 }
             ProgressView()
                 .accentColor(Color.theme.accent)
@@ -88,6 +91,8 @@ extension HomeView {
                 .onTapGesture {
                     if showPortfolio {
                         showPortfolioView.toggle()
+                    } else {
+                        showSettingsView.toggle()
                     }
                 }
                 .animation(nil, value: UUID())

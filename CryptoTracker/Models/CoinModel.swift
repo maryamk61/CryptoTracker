@@ -111,7 +111,7 @@ struct CoinModel: Identifiable, Codable {
     return Int(marketCapRank ?? 0)
   }
   
-    static var sample = CoinModel(id: "bitcoin", symbol: "btc", name: "Bitcoin", image: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579", currentPrice: 21857.1234, marketCap: 421746360569, marketCapRank: 1, fullyDilutedValuation: 459146154295, totalVolume: 29111657534, high24H: 22106.2333, low24H: 21650.5640, priceChange24H: 26.54, priceChangePercentage24H: 0.12158, marketCapChange24H: -0.21758, marketCapChangePercentage24H: -0.34, circulatingSupply: 19289443, totalSupply: 21000000, maxSupply: 21000000, ath: 69045, athChangePercentage: -6.28207, athDate: "2021-11-10T14:24:11.849Z", atl: 67.81, atlChangePercentage: 3.965, atlDate: "2013-07-06T00:00:00.000Z", lastUpdated: "2023-02-13T08:11:52.400Z", sparklineIn7D: SparklineIn7D(price: [
+    static var sample = CoinModel(id: "bitcoin", symbol: "btc", name: "Bitcoin", image: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579", currentPrice: 21857.1234, marketCap: 421746360569, marketCapRank: 1, fullyDilutedValuation: 459146154295, totalVolume: 29111657534, high24H: 22106.2333, low24H: 21650.5640, priceChange24H: 26.54, priceChangePercentage24H: 0.12158, marketCapChange24H: -0.21758, marketCapChangePercentage24H: -0.34, circulatingSupply: 19289443, totalSupply: 21000000, maxSupply: 21000000, ath: 69045, athChangePercentage: -6.28207, athDate: "2021-11-10T14:24:19.604Z", atl: 67.81, atlChangePercentage: 3.965, atlDate: "2015-10-20T00:00:00.000Z", lastUpdated: "2023-07-18T09:11:52.400Z", sparklineIn7D: SparklineIn7D(price: [
     22742.644241851332,
     22798.70464072346,
     22880.52641622407,
