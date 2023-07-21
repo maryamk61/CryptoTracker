@@ -13,6 +13,8 @@
 		5C64336329B36EB5000D2166 /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C64336229B36EB5000D2166 /* LocalFileManager.swift */; };
 		5C64336629B891C3000D2166 /* CoinImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C64336529B891C3000D2166 /* CoinImageView.swift */; };
 		5C64336829B89404000D2166 /* CoinImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C64336729B89404000D2166 /* CoinImageService.swift */; };
+		5C82E0F82A68450100B4682A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C82E0F72A68450100B4682A /* LaunchScreen.storyboard */; };
+		5C82E0FA2A6845A900B4682A /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C82E0F92A6845A900B4682A /* LaunchView.swift */; };
 		5C986F612A5AA6E2009CFEAC /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C986F602A5AA6E2009CFEAC /* HapticManager.swift */; };
 		5C986F662A5D4B51009CFEAC /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C986F652A5D4B51009CFEAC /* DetailView.swift */; };
 		5C986F682A5E8F1F009CFEAC /* CoinDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C986F672A5E8F1F009CFEAC /* CoinDetailModel.swift */; };
@@ -53,9 +55,12 @@
 		5C3EF34A2A668D6900A024B5 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		5C3EF34C2A66B9C000A024B5 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		5C3EF3502A67C94800A024B5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5C4A3A032A68346A005A35D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5C64336229B36EB5000D2166 /* LocalFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
 		5C64336529B891C3000D2166 /* CoinImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageView.swift; sourceTree = "<group>"; };
 		5C64336729B89404000D2166 /* CoinImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageService.swift; sourceTree = "<group>"; };
+		5C82E0F72A68450100B4682A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5C82E0F92A6845A900B4682A /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		5C986F602A5AA6E2009CFEAC /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		5C986F652A5D4B51009CFEAC /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		5C986F672A5E8F1F009CFEAC /* CoinDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailModel.swift; sourceTree = "<group>"; };
@@ -120,6 +125,23 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		5C4A3A042A683617005A35D8 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				5C4A3A072A68442B005A35D8 /* VIews */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		5C4A3A072A68442B005A35D8 /* VIews */ = {
+			isa = PBXGroup;
+			children = (
+				5C82E0F72A68450100B4682A /* LaunchScreen.storyboard */,
+				5C82E0F92A6845A900B4682A /* LaunchView.swift */,
+			);
+			path = VIews;
+			sourceTree = "<group>";
+		};
 		5C64336429B87A04000D2166 /* CoinImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				5CCC3A962998D89900EB2389 /* Components */,
+				5C4A3A042A683617005A35D8 /* Launch */,
 				5CCC3A912998D6C600EB2389 /* Home */,
 				5C986F622A5D4B00009CFEAC /* Detail */,
 				5C3EF34E2A67C90400A024B5 /* Settings */,
@@ -259,6 +282,7 @@
 		5CE6ADE4299249170004C83C /* CryptoTracker */ = {
 			isa = PBXGroup;
 			children = (
+				5C4A3A032A68346A005A35D8 /* Info.plist */,
 				5CF611B9299F7C6700B6C1C7 /* Utillities */,
 				5CE6ADF729924F1F0004C83C /* Extensions */,
 				5CCC3AA5299BC90800EB2389 /* Services */,
@@ -361,6 +385,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C82E0F82A68450100B4682A /* LaunchScreen.storyboard in Resources */,
 				5CE6ADED299249180004C83C /* Preview Assets.xcassets in Resources */,
 				5CE6ADEA299249180004C83C /* Assets.xcassets in Resources */,
 			);
@@ -389,6 +414,7 @@
 				5C64336629B891C3000D2166 /* CoinImageView.swift in Sources */,
 				5CE6ADE6299249170004C83C /* CryptoTrackerApp.swift in Sources */,
 				5CCC3A992998D8BE00EB2389 /* CircleButtonView.swift in Sources */,
+				5C82E0FA2A6845A900B4682A /* LaunchView.swift in Sources */,
 				5CE6ADF929924F310004C83C /* Color.swift in Sources */,
 				5CCC3A9B29991F6700EB2389 /* CircleButtonAnimationView.swift in Sources */,
 				5C986F662A5D4B51009CFEAC /* DetailView.swift in Sources */,
@@ -536,17 +562,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CryptoTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = A7F8CZK365;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CryptoTracker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CryptoTracker;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -571,17 +598,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CryptoTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = A7F8CZK365;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CryptoTracker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CryptoTracker;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
