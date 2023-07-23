@@ -29,10 +29,10 @@ struct HomeView: View {
                 .sheet(isPresented: $showSettingsView) {
                     SettingsView(isPresented: $showSettingsView)
                 }
-            ProgressView()
-                .accentColor(Color.theme.accent)
-                .scaleEffect(x: 1.5, y: 1.5, anchor: .center)
-                .offset(x: 0, y: 40)
+//            ProgressView()
+//                .accentColor(Color.theme.accent)
+//                .scaleEffect(x: 1.5, y: 1.5, anchor: .center)
+//                .offset(x: 0, y: 40)
             //content layer
             VStack {
                 homeHeader
