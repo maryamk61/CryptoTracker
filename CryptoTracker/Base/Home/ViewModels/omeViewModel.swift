@@ -45,7 +45,9 @@ class HomeViewModel: ObservableObject {
             .debounce(for: .seconds(0.5) , scheduler: DispatchQueue.main) // wait for 0.5 secs
             .map(filterAndSortCoins) // we can delete parameters because they are exact same
             .sink { [weak self] returnedCoins in
-                self?.allCoins =  returnedCoins
+                guard let self = self else {return}
+                // sort portfolioCoins if needed, because allCoins is already sorted
+                self.allCoins =  returnedCoins
             }
             .store(in: &cancellables)
         
@@ -148,10 +150,9 @@ class HomeViewModel: ObservableObject {
         guard let data = data else {
             return stats
         }
+        
         let marketCap = StatisticModel(title: "Market Cap", value: data.marketCap, percentageChange: data.marketCapChangePercentage24HUsd)
-        
         let volume = StatisticModel(title: "24h Volume", value: data.volume)
-        
         let dominance = StatisticModel(title: "BTC Dominance", value: data.btcDominance)
         
         let portfolioValue = portfolioCoins.map { $0.currentHoldingValue}
@@ -164,7 +165,7 @@ class HomeViewModel: ObservableObject {
             return previousValue
         }.reduce(0, +)
         
-        let percentageChange = ((portfolioValue - previousValue) / previousValue) * 100
+        let percentageChange = ((portfolioValue - previousValue) / previousValue)
         
         let portfolio = StatisticModel(
             title: "Portfolio Value",

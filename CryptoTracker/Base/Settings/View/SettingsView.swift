@@ -18,18 +18,28 @@ struct SettingsView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                firstSection
-                secondSection
-                ThirdSection
-                lastSection
-            }
-            .foregroundColor(Color.blue)
-            .listStyle(.grouped)
-            .navigationTitle("Settings")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    XmarkButton(isPresented: $isPresented)
+            ZStack {
+                //background
+                Color.theme.background
+                    .ignoresSafeArea()
+                //content
+                List {
+                    firstSection
+                        .listRowBackground(Color.theme.background.opacity(0.5))
+                    secondSection
+                        .listRowBackground(Color.theme.background.opacity(0.5))
+                    ThirdSection
+                        .listRowBackground(Color.theme.background.opacity(0.5))
+                    lastSection
+                        .listRowBackground(Color.theme.background.opacity(0.5))
+                }
+                .foregroundColor(Color.blue)
+                .listStyle(.grouped)
+                .navigationTitle("Settings")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        XmarkButton(isPresented: $isPresented)
+                    }
                 }
             }
         }

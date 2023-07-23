@@ -24,6 +24,7 @@ class MarketDataService {
         //Because this part of building a publisher is common in every call to every data service, we extract it out to another file(networkingManager) to clean the code
           marketSubscription = NetworkingManager.download(url: url)
           .decode(type: GlobalData.self, decoder: JSONDecoder())
+          .receive(on: DispatchQueue.main)//receive on th main thread after decoding
           .sink(receiveCompletion: NetworkingManager.handleCompletion , receiveValue: {[weak self] (returnedGlobalData) in
             guard let self = self else {return} // or self?.allCoins = returnedCoins
               self.marketData = returnedGlobalData.data

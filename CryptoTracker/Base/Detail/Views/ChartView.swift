@@ -62,7 +62,7 @@ struct ChartView: View {
         .foregroundColor(Color.theme.secondaryText)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                withAnimation(.linear(duration: 2.0)) {
+                withAnimation(.linear(duration: 1.0)) {
                     percentage = 1.0
                 }
             }

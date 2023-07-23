@@ -32,6 +32,7 @@ struct HomeView: View {
             ProgressView()
                 .accentColor(Color.theme.accent)
                 .scaleEffect(x: 1.5, y: 1.5, anchor: .center)
+                .offset(x: 0, y: 40)
             //content layer
             VStack {
                 homeHeader
@@ -45,27 +46,40 @@ struct HomeView: View {
                         .refreshable {
                             viewModel.reloadData()
                         }
-                } else {
-                    portfolioCoinsList
-                        .transition(.move(edge: .trailing))
-                        .refreshable {
-                            viewModel.reloadData()
+                }
+                if showPortfolio {
+                    ZStack(alignment: .top) {
+                        if viewModel.portfolioCoins.isEmpty && viewModel.searchText.isEmpty {
+                            portfolioEmptyText
+                        } else {
+                            portfolioCoinsList
+                                .refreshable {
+                                    viewModel.reloadData()
+                                }
+                            
+                            
                         }
+                    }
+                    .transition(.move(edge: .trailing))
                 }
                 Spacer(minLength: 0)
             }
         }
         .preferredColorScheme(.dark)
-        .background(
-            NavigationLink(
-                destination: DetailLoadingView(coin: $selectedCoin),
-                isActive: $showDetailView,
-                label: {
-                    EmptyView()
-                })
-        )
-        
-        
+        // iOS 16
+        .navigationDestination(isPresented: $showDetailView) {
+            DetailLoadingView(coin: $selectedCoin)
+                .navigationBarHidden(false)
+                .navigationBarBackButtonHidden(false)
+        }
+//        .background(
+//            NavigationLink(
+//                destination: DetailLoadingView(coin: $selectedCoin),
+//                isActive: $showDetailView,
+//                label: {
+//                    EmptyView()
+//                })
+//        )
     }
 }
 
@@ -121,10 +135,11 @@ extension HomeView {
             ForEach(viewModel.allCoins) { coin in
 //                NavigationLink(destination:DetailLoadingView(coin: $selectedCoin), isActive: $showDetailView) {
                 CoinRowView(coin: coin, showHoldingsColumn: false)
-                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                    .listRowInsets(.init(top: 10, leading: 3, bottom: 10, trailing: 10))
                     .onTapGesture {
                         segue(coin: coin)
                     }
+                    .listRowBackground(Color.theme.background)
 //              }
             }
         }
@@ -135,10 +150,11 @@ extension HomeView {
         List {
             ForEach(viewModel.portfolioCoins) { coin in
                 CoinRowView(coin: coin, showHoldingsColumn: true)
-                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                    .listRowInsets(.init(top: 10, leading: 3, bottom: 10, trailing: 10))
                     .onTapGesture {
                         segue(coin: coin)
                     }
+                    .listRowBackground(Color.theme.background)
             }
         }
         .listStyle(.plain)
@@ -196,5 +212,14 @@ extension HomeView {
         .font(.caption)
         .foregroundColor(Color.theme.secondaryText)
         .padding(.horizontal)
+    }
+    
+    private var portfolioEmptyText: some View {
+        Text("You haven't added any coins to your portfolio yet!.Click the + button to get started.")
+            .font(.callout)
+            .foregroundColor(Color.theme.secondaryText)
+            .fontWeight(.medium)
+            .multilineTextAlignment(.center)
+            .padding(50)
     }
 }

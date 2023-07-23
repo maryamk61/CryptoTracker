@@ -47,8 +47,7 @@ extension CoinRowView {
   private var leftColumn: some View {
     HStack(spacing: 5) {
       Text("\(coin.rank)")
-        .font(.body)
-//        .fontWeight(.bold)
+            .font(.caption).fontWeight(.heavy)
         .foregroundColor(Color.theme.secondaryText)
         .frame(minWidth: 15)
       //
@@ -61,14 +60,14 @@ extension CoinRowView {
 //        }
         CoinImageView(coin: coin)
         .frame(width: 25, height: 25)
-        .padding(.leading, 8)
+        .padding(.leading, 4)
         .padding(.trailing, 2)
       Text(coin.symbol.uppercased())
         .font(.headline.bold())
         .lineLimit(1)
 //        .minimumScaleFactor(0.7)
         .foregroundColor(Color.theme.accent)
-        .frame(minWidth: 40)
+        .frame(minWidth: 35)
     }
   }
   

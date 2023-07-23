@@ -26,6 +26,7 @@ class CoinDetailDataService {
         
         coinDetailSubscription = NetworkingManager.download(url: url)
             .decode(type: CoinDetailModel.self, decoder: JSONDecoder())
+            .receive(on: DispatchQueue.main)//receive on th main thread after decoding
             .sink { (completion) in
                 switch completion {
                 case .failure(let error):

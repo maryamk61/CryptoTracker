@@ -11,7 +11,7 @@ struct LaunchView: View {
     // convert to array to animate letters individually
     @State private var loadingText: [String] = "Loading your portfolio...".map { String($0) }
     @State private var showText: Bool = false
-    let timer = Timer.publish(every: 0.08, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 0.09, on: .main, in: .common).autoconnect()
     @State private var counter: Int = 0
     @State private var loops = 0
     @Binding var showLaunchView: Bool// make it @Binding to bind it to the rest of the app

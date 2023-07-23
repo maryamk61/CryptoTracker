@@ -34,7 +34,7 @@ class NetworkingManager {
 //        return output.data
 //      }
       .tryMap({ try handleURLResponse(output: $0, url: url) })
-      .receive(on: DispatchQueue.main)
+      .retry(3)// optimization
       .eraseToAnyPublisher()
   }
   

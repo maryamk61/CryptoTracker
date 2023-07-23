@@ -15,16 +15,18 @@ struct CryptoTrackerApp: App {
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color.theme.accent)]
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.theme.accent)]
+        UITableView.appearance().backgroundColor = UIColor.clear
+        UINavigationBar.appearance().tintColor = UIColor(Color.theme.accent)
     }
     
     var body: some Scene {
         WindowGroup {
             ZStack {
-                NavigationView {
+                NavigationStack {
                     HomeView()
-                    //.navigationBarHidden(true)
                         .navigationBarBackButtonHidden(false)
                 }
+                .navigationViewStyle(.stack) // force ipad to have the same stylig as iphone
                 .environmentObject(viewModel)
                 
                 ZStack {
