@@ -41,11 +41,20 @@ struct HomeView: View {
                 columnTitles
                 
                 if !showPortfolio {
-                    allCoinsList
-                        .transition(.move(edge: .leading))
-                        .refreshable {
-                            viewModel.reloadData()
+                    ZStack {
+                        if viewModel.allCoins.isEmpty {
+                            ProgressView()
+                                .accentColor(Color.theme.accent)
+                                .scaleEffect(x: 1.5, y: 1.5, anchor: .center)
+                                .offset(x: 0, y: 80)
+                        } else {
+                            allCoinsList
+                                .transition(.move(edge: .leading))
+                                .refreshable {
+                                    viewModel.reloadData()
+                                }
                         }
+                    }
                 }
                 if showPortfolio {
                     ZStack(alignment: .top) {
