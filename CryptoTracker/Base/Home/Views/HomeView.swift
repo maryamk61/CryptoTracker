@@ -15,6 +15,7 @@ struct HomeView: View {
     @State private var showSettingsView: Bool = false//new sheet
     @State private var selectedCoin: CoinModel?
     @State private var showDetailView: Bool = false
+    @State private var showErrorAlert: Bool = false
     
     @ViewBuilder
     var body: some View {
@@ -81,6 +82,14 @@ struct HomeView: View {
                 .navigationBarHidden(false)
                 .navigationBarBackButtonHidden(false)
         }
+        .onReceive(viewModel.$showError) { state in
+            self.showErrorAlert = state
+        }
+        .alert(isPresented: $showErrorAlert) {
+            Alert(title: Text("Error"),
+                  message: Text(viewModel.errorMessage),
+                  dismissButton: .cancel(Text("OK")))
+        }
 //        .background(
 //            NavigationLink(
 //                destination: DetailLoadingView(coin: $selectedCoin),
@@ -92,6 +101,9 @@ struct HomeView: View {
     }
 }
 
+private func showErrorAlert() {
+    
+}
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {

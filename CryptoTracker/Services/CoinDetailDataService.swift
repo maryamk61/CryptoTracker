@@ -14,14 +14,16 @@ class CoinDetailDataService {
     //var cancellables = Set<AnyCancellable>() // It's hard to cancel this specific publisher if we want to because of Set, so we can use single Cancellable instead to cancel it any time we want.
     let coin: CoinModel
     var coinDetailSubscription: AnyCancellable? // Whenever we want to cancel the publisher we can use this way
+    let url: String
     
     init(coin: CoinModel) {
         self.coin = coin
+        self.url = "https://api.coingecko.com/api/v3/coins/\(coin.id)?localization=false&tickers=false&market_data=false&community_data=false&developer_data=false&sparkline=false"
         getCoinDetails()
     }
     
     func getCoinDetails() {
-        guard let url = URL(string: "https://api.coingecko.com/api/v3/coins/\(coin.id)?localization=false&tickers=false&market_data=false&community_data=false&developer_data=false&sparkline=false") else {return}
+//        guard let url = URL(string: "https://api.coingecko.com/api/v3/coins/\(coin.id)?localization=false&tickers=false&market_data=false&community_data=false&developer_data=false&sparkline=false") else {return}
         
         
         coinDetailSubscription = NetworkingManager.download(url: url)

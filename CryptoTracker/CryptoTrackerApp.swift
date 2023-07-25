@@ -26,6 +26,7 @@ struct CryptoTrackerApp: App {
                     HomeView()
                         .navigationBarBackButtonHidden(false)
                 }
+                .accentColor(Color.theme.accent)
                 .navigationViewStyle(.stack) // force ipad to have the same stylig as iphone
                 .environmentObject(viewModel)
                 

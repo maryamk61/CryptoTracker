@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+
 class HomeViewModel: ObservableObject {
     
     @Published var statistics: [StatisticModel] = []
@@ -15,6 +16,8 @@ class HomeViewModel: ObservableObject {
     @Published var portfolioCoins: [CoinModel] = []
     @Published var searchText: String = ""
     @Published var sortOption: SortOption = .holdings
+    @Published var errorMessage: String = ""
+    @Published var showError: Bool = false
     
     private var coinDataService: CoinDataService = CoinDataService()
     private var marketDataService: MarketDataService = MarketDataService()
@@ -33,7 +36,6 @@ class HomeViewModel: ObservableObject {
     
     func addSubScribers() {
         // We do not need this publisher anymore , because we are subscribing to this publisher and searchText together down here
-        
         //        dataService.$allCoins
         //            .sink { [weak self] returnedCoins in
         //                self?.allCoins = returnedCoins
@@ -44,29 +46,24 @@ class HomeViewModel: ObservableObject {
             .combineLatest(coinDataService.$allCoins, $sortOption)
             .debounce(for: .seconds(0.5) , scheduler: DispatchQueue.main) // wait for 0.5 secs
             .map(filterAndSortCoins) // we can delete parameters because they are exact same
-            .sink { [weak self] returnedCoins in
+            .sink { (completion) in
+                switch completion {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    self.showError = true
+                    break
+                default : // default
+                    self.showError = false
+                    break
+                }
+            }
+            receiveValue: { [weak self] returnedCoins in
                 guard let self = self else {return}
                 // sort portfolioCoins if needed, because allCoins is already sorted
                 self.allCoins =  returnedCoins
+                self.showError = false
             }
             .store(in: &cancellables)
-        
-        // Better to use seperate func for map
-        //            .map { (text, startingCoins) -> [CoinModel] in
-        //                guard !text.isEmpty else {
-        //                    return startingCoins
-        //                }
-        //                let lowerCased = text.lowercased()
-        //                return startingCoins.filter { coin -> Bool in
-        //                    return coin.name.lowercased().contains(lowerCased) ||
-        //                    coin.id.lowercased().contains(lowerCased) ||
-        //                    coin.symbol.lowercased().contains(lowerCased)
-        //                }
-        //            }
-        //            .sink { [weak self] returnedCoins in
-        //                self?.allCoins =  returnedCoins
-        //            }
-        //            .store(in: &cancellables)
         
         //update portfolio
         $allCoins
@@ -85,6 +82,19 @@ class HomeViewModel: ObservableObject {
             .map(mapGlobalMarketData) // better to shorten it
             .sink { [weak self] stats in
                 self?.statistics = stats
+            }
+            .store(in: &cancellables)
+        
+        // assign errors to vm for showing in view
+        coinDataService.$error
+            .delay(for: .seconds(3), scheduler: DispatchQueue.main)
+            .sink { [weak self] error in
+                if let error = error {
+                    self?.errorMessage = error.localizedDescription
+                    self?.showError = true
+                } else {
+                    self?.showError = false
+                }
             }
             .store(in: &cancellables)
     }
