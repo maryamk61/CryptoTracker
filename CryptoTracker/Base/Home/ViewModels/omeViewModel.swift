@@ -49,7 +49,6 @@ class HomeViewModel: ObservableObject {
             .sink { (completion) in
                 switch completion {
                 case .failure(let error):
-                    print(error.localizedDescription)
                     self.showError = true
                     break
                 default : // default

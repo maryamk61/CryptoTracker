@@ -33,7 +33,6 @@ class CoinDetailDataService {
                 switch completion {
                 case .failure(let error):
                     print(error.localizedDescription)
-                    print(error)
                 case .finished: // default
                     break
                 }
